@@ -4,12 +4,12 @@ import { ForecastWeather } from './ForecastWeather';
 import { TodayWeather } from './TodayWeather'
 import { useFetchApi } from '../hooks/useFetchApi';
 import { geocodeByAddress } from 'react-places-autocomplete';
-import { userLocation } from '../utilities/useLocation';
+import Geocode from "react-geocode";
 
 
 
 export const WeatherApp = () => {
-    const [location, setLocation] = useState({});
+    const [location, setLocation] = useState({city:'',lat:null,lng:null});
     const { data, status } = useFetchApi(`http://api.weatherapi.com/v1/forecast.json?key=c1cea09db4c14ee1bad125331210612&q=${location.lat},${location.lng}&days=3&aqi=no&alerts=no`)
 
     const handleSelect = async (value) => {
@@ -20,13 +20,33 @@ export const WeatherApp = () => {
             lng: results[0].geometry.location.lng()
         })
     }
-
+    useEffect(()=>{
+        navigator.geolocation.getCurrentPosition((position) => {
+            Geocode.setApiKey("AIzaSyBJ7fhqNeSGZHPu7RPmjeDl5tLelMjEEss");
+            Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then((response) => {
+                response.results[0].address_components.forEach((address_component) => {
+                    address_component.types.forEach(type => {
+                        if (type === "locality") {
+                            setLocation({
+                                city: address_component.long_name,
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            })
+                        }
+                    })
+                })
+            }, (error) => {
+                console.error(error);
+            }
+            );
+        })
+    },[])
 
 
     return (
         <>
             <CityForm handleSelect={handleSelect} />
-            {status === 'fetched' && <TodayWeather cityName={location.city} current={data.data.current} location={data.data.location} />}
+            {status === 'fetched'&& location.city!=='' ? <TodayWeather cityName={location.city} current={data.data.current} location={data.data.location} />:"Loading"}
             {status === 'fetched' && <ForecastWeather forecast={data.data.forecast} />}
         </>
     )

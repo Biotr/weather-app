@@ -1,7 +1,8 @@
+
 export const TodayWeather = ({ location, current, cityName }) => (
     <div>
         <h2>{cityName}</h2>
-        <h3>{location.localtime}</h3>
+        <h3>{location.localtime_epoch}</h3>
 
         <div> </div>
         <div>
