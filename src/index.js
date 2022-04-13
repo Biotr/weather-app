@@ -2,15 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { WeatherApp } from './components/WeatherApp'
 import reportWebVitals from './reportWebVitals';
+import 'normalize.css';
 import "./styles/styles.scss"
 
 
 
 
 ReactDOM.render(
-  <div>
-    <WeatherApp />
-  </div>,
+
+  <WeatherApp />
+  ,
   document.getElementById('root')
 );
 
