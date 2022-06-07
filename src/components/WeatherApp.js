@@ -48,7 +48,7 @@ export const WeatherApp = () => {
 
 
     return (
-        <div className="container">
+        <>
             <div className="container__first">
                 <CityForm handleSelect={handleSelect} />
                 {status === 'fetched' && location.city !== '' ? <TodayWeather cityName={location.city} current={data.data.current} location={data.data.location} /> : "Loading"}
@@ -61,7 +61,7 @@ export const WeatherApp = () => {
 
 
 
-        </div>
+        </>
 
 
 

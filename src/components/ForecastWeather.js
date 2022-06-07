@@ -114,21 +114,20 @@ export const ForecastWeather = ({ forecast }) => {
     const [type, setType] = useState({ chart: 'CHART_BY_RAIN_CHANCE', day: 0 })
 
     useEffect(() => {
-        console.log(type)
         dispatch({ type: type.chart, day: type.day, forecast })
     }, [type, forecast])
 
 
     return (
-        <div>
-            <div>
-                <ul>
-                    <li className={type.chart === 'CHART_BY_RAIN_CHANCE' ? 'active' : ''} onClick={() => { setType({ ...type, chart: 'CHART_BY_RAIN_CHANCE' }) }}>Fallout </li>
-                    <li className={type.chart === 'CHART_BY_TEMPERATURE' ? 'active' : ''} onClick={() => { setType({ ...type, chart: 'CHART_BY_TEMPERATURE', }) }}>Temperature</li>
-                    <li className={type.chart === 'CHART_BY_WIND' ? 'active' : ''} onClick={() => { setType({ ...type, chart: 'CHART_BY_WIND', }) }}>Wind</li>
-                </ul>
-                <Line redraw={true} options={state.chartOptions} data={state.chartData} />
-            </div>
+        <div className="chart">
+
+            <ul>
+                <li className={type.chart === 'CHART_BY_RAIN_CHANCE' ? 'active' : ''} onClick={() => { setType({ ...type, chart: 'CHART_BY_RAIN_CHANCE' }) }}>Fallout </li>
+                <li className={type.chart === 'CHART_BY_TEMPERATURE' ? 'active' : ''} onClick={() => { setType({ ...type, chart: 'CHART_BY_TEMPERATURE', }) }}>Temperature</li>
+                <li className={type.chart === 'CHART_BY_WIND' ? 'active' : ''} onClick={() => { setType({ ...type, chart: 'CHART_BY_WIND', }) }}>Wind</li>
+            </ul>
+            <Line redraw={true} options={state.chartOptions} data={state.chartData} />
+
 
             <div className="days__info">{forecast.forecastday.map((day, id) => <DayWeather handleSelectDay={(day) => { setType({ ...type, day: day }) }} id={id} key={id} dailyWeather={day} />)}</div>
         </div>
