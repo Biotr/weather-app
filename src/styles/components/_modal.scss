@@ -1,0 +1,18 @@
+.ReactModalPortal>div{
+    opacity:0;
+}
+.ReactModalPortal .ReactModal__Overlay{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 200ms ease-in-out;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+.modal{
+    background-color: white;
+    max-width: 30rem;
+    padding: 30px;
+}

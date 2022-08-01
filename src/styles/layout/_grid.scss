@@ -1,187 +1,10 @@
-body {
-    background-color: #eaf0f5;
-    color: #9dc8d7;
-    font-family: "Rubik", sans-serif;
-    overflow-x: hidden;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-
-
-
-.container__first {
-    width: 100%;
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-right: 1px solid #9dc8d7;
-    border-radius: 10%;
-    padding: 70px 50px 70px 50px;
-    height: 100%;
-}
-
-.container__second {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.chart {
-    width: 100%;
-
-}
-
-h1 {
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 2px;
-    margin: 0;
-    margin-top: 3rem;
-    font-size: 2em;
-}
-
-.today__time {
-    margin: 0;
-    margin-bottom: 2rem;
-    font-size: 1.25rem;
-
-}
-
-.weather__image {
-    background-color: #9dc8d7;
-    border-radius: 100%;
-    display: flex;
-    padding: 5px;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.247);
-}
-
-.today .today__short {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.today {
-    margin-top: 2rem;
-    width: 95%;
-    color: white;
-    background-color: #9dc8d7;
-    border-radius: 80px;
-
-
-}
-
-.today__row {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.today__short>h2 {
-    margin-top: 2rem;
-    color: #eaf0f5;
-    font-weight: 400;
-    border-bottom: 1px solid #eaf0f5;
-}
-
-.today__temp {
-    color: #eaf0f5;
-    margin-top: 1rem;
-    font-size: 4rem;
-    font-weight: 300;
-    margin-bottom: 0;
-}
-
-.today__condition {
-    font-size: 2rem;
-    margin: 0 0 1rem;
-}
-
-.today__info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-}
-
-.today__info--info {
-    margin-top: .5rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.today__info--info>h2 {
-    font-size: 1rem;
-    margin-top: 0;
-    color: #eaf0f5;
-    font-weight: 400;
-    text-decoration: underline;
-}
-
-.today__info--info>p {
-    color: #eaf0f5;
-    margin-top: 0.2rem;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    font-weight: 300;
-}
-
-ul {
-    display: flex;
-    list-style-type: none;
-    justify-content: space-around;
-}
-
-li {
-    border-bottom: 1px solid #9dc8d7;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    padding: 0 0 20px 0;
-    cursor: pointer;
-}
-
-.active,
-li:hover {
-    border-bottom: 3px solid #9dc8d7;
-}
-
-.days__info {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin-top: 40px;
-
-}
-
-.day__info {
-    background-color: #9dc8d7;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0 20px 0;
-    margin: 0 2px 0 2px;
-    width: 100%;
-    max-width: 150px;
-    border-radius: 40px;
-    cursor: pointer;
-}
-
 @mixin rootGrid($direction, $alignment-property, $alignment-value) {
     #root {
         display: flex;
         flex-direction: $direction;
         #{$alignment-property}: $alignment-value;
-        width: 100%;
+        width: 100vw;
+        height: 100vh;
     }
 }
 
@@ -190,18 +13,24 @@ li:hover {
 
     .container__first {
         border: none;
-        align-items: center;
         padding: 0px;
+        width: 100%;
     }
-
     .container__second {
         width: 100%;
     }
+    .today{
+        width: 70vw;
+    }
 }
-
 @media screen and (min-width: 1200px) {
     @include rootGrid(row, justify-content, space-around);
-
+    .container__first{
+        width:100vw;
+    }
+    .today{
+        width:80%
+    }
     .container__second {
         width: 50%;
         min-width: 700px;

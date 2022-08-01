@@ -1,0 +1,15 @@
+.suggestions{
+    position:relative;
+    z-index: 1;
+}
+.suggestions__list{
+    position: absolute;
+    width:255px;
+    border-radius:50% ;
+}
+.suggestion{
+    padding:5px;
+    cursor: pointer;
+    border:1px solid $light-blue;
+    color: $light-blue;
+}

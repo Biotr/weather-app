@@ -5,9 +5,9 @@ export const TodayWeather = ({ location, current, cityName }) => (
     <>
 
         <h1>{cityName}</h1>
-        <p className="today__time">{getTime(location.localtime_epoch, 'day_month_year')}</p>
+        <p className="weather__time">{getTime(location.localtime_epoch, 'day_month_year')}</p>
 
-        <div className="weather__image">{<img width={150} src={current.condition.icon} alt="Weather" />}</div>
+        <div className="weather__image" style={{backgroundImage:`url(${current.condition.icon})`}}></div>
 
         <div className="today">
             <div className="today__short">
@@ -18,21 +18,21 @@ export const TodayWeather = ({ location, current, cityName }) => (
             <div className="today__info">
 
                 <div className="today__info--info">
-                    <h2 >Humdity</h2>
+                    <h3 >Humdity</h3>
                     <p >{current.humidity}%</p>
                 </div>
                 <div className="today__info--info">
-                    <h2>Wind Speed</h2>
+                    <h3>Wind Speed</h3>
                     <p>{current.wind_kph}km/h</p>
                 </div>
 
 
                 <div className="today__info--info">
-                    <h2 >Pressure</h2>
+                    <h3 >Pressure</h3>
                     <p >{current.pressure_mb}mb</p>
                 </div>
                 <div className="today__info--info">
-                    <h2>Precipitation</h2>
+                    <h3>Precipitation</h3>
                     <p>{current.precip_mm}mm</p>
                 </div>
 

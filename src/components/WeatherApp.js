@@ -5,13 +5,8 @@ import { TodayWeather } from './TodayWeather'
 import { useFetchApi } from '../hooks/useFetchApi';
 import { geocodeByAddress } from 'react-places-autocomplete';
 import Geocode from "react-geocode";
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-
-
-
-
-
+import {OptionModal} from './OptionModal';
+import CircularProgress from '@mui/material/CircularProgress';
 export const WeatherApp = () => {
     const [location, setLocation] = useState({ city: '', lat: null, lng: null });
     const { data, status } = useFetchApi(`http://api.weatherapi.com/v1/forecast.json?key=c1cea09db4c14ee1bad125331210612&q=${location.lat},${location.lng}&days=3&aqi=no&alerts=no`)
@@ -39,8 +34,12 @@ export const WeatherApp = () => {
                         }
                     })
                 })
-            }, (error) => {
-                console.error(error);
+            }, () => {
+                setLocation({
+                    city: 'New York',
+                    lat: 43.000000,
+                    lng: -75.000000
+                })
             }
             );
         })
@@ -48,24 +47,18 @@ export const WeatherApp = () => {
 
 
     return (
-        <>
-            <div className="container__first">
+        <>  
+            {status === 'error' && <OptionModal/>}
+            {status !== 'error' && <><div className="container__first">
                 <CityForm handleSelect={handleSelect} />
-                {status === 'fetched' && location.city !== '' ? <TodayWeather cityName={location.city} current={data.data.current} location={data.data.location} /> : "Loading"}
+                {status === 'fetched' && location.city !== '' ? <TodayWeather cityName={location.city} current={data.data.current} location={data.data.location} /> : <CircularProgress/>}
             </div>
-
 
             <div className="container__second">
-                {status === 'fetched' && <ForecastWeather forecast={data.data.forecast} />}
-            </div>
-
-
-
+                {status === 'fetched' && location.city !== '' ? <ForecastWeather forecast={data.data.forecast} />: <CircularProgress/>}
+            </div></>}
+            
         </>
-
-
-
-
     )
 }
 

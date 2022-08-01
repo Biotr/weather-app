@@ -1,7 +1,9 @@
-@import 'base/base.scss';
-@import 'base/settings.scss';
-@import 'components/chart.scss';
-@import 'layout/grid.scss';
-@import 'components/todayWeather';
 @import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&display=swap');
-@import 'base/typography'
+@import 'base/settings';
+@import 'base/base';
+@import 'components/chart';
+@import 'components/modal';
+@import 'components/todayWeather';
+@import 'components/forecastWeather';
+@import 'components/cityForm';
+@import 'layout/grid';

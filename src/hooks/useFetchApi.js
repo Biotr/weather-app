@@ -12,7 +12,7 @@ export const useFetchApi = (url) => {
                 setData(response);
                 setStatus('fetched')
             } catch (err) {
-                console.log(err)
+                setStatus('error')
             }
         }
         fetchData()
