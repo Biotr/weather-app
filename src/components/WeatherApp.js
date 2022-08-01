@@ -9,7 +9,7 @@ import {OptionModal} from './OptionModal';
 import CircularProgress from '@mui/material/CircularProgress';
 export const WeatherApp = () => {
     const [location, setLocation] = useState({ city: '', lat: null, lng: null });
-    const { data, status } = useFetchApi(`http://api.weatherapi.com/v1/forecast.json?key=c1cea09db4c14ee1bad125331210612&q=${location.lat},${location.lng}&days=3&aqi=no&alerts=no`)
+    const { data, status } = useFetchApi(`https://api.weatherapi.com/v1/forecast.json?key=c1cea09db4c14ee1bad125331210612&q=${location.lat},${location.lng}&days=3&aqi=no&alerts=no`)
 
     const handleSelect = async (value) => {
         const results = await geocodeByAddress(value);
